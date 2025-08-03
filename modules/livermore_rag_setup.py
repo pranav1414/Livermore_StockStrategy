@@ -6,6 +6,8 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import google.generativeai as genai
 import streamlit as st
+import os
+import google.generativeai as genai
 
 # ✅ Use Streamlit secrets when deployed
 api_key = st.secrets.get("GOOGLE_API_KEY", None)
