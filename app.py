@@ -36,8 +36,9 @@ def get_generic_stock_analysis(ticker):
     - Technical Signal: {data['signal']}
     """
 
-# ✅ Livermore Commentary
-def get_livermore_commentary(ticker):
+# ✅ Cached Livermore Commentary
+@st.cache_data(show_spinner=False)
+def cached_commentary(ticker):
     signal_data = get_stock_signal(ticker)
     prompt = f"""
     You are Jesse Livermore. Based on this stock data, give your general take:
@@ -83,9 +84,10 @@ st.sidebar.header("📊 Select Stock")
 tickers = ["AMZN", "AAPL", "MSFT", "TSLA", "META", "GOOGL", "NVDA"]
 selected_ticker = st.sidebar.selectbox("Choose a stock:", tickers)
 
-# Livermore Commentary below dropdown
-st.sidebar.subheader(f"🧠 Livermore's Commentary on {selected_ticker}")
-st.sidebar.markdown(get_livermore_commentary(selected_ticker))
+# ✅ Lazy Load Commentary Button
+if st.sidebar.button("🔄 Generate Livermore Commentary"):
+    st.sidebar.subheader(f"🧠 Livermore's Commentary on {selected_ticker}")
+    st.sidebar.markdown(cached_commentary(selected_ticker))
 
 # Layout: Chart + Chatbot
 col1, col2 = st.columns([1.2, 1.8])
