@@ -6,12 +6,13 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import google.generativeai as genai
 
-# ✅ Configure Gemini API Key
-api_key = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=api_key)
+# ✅ Use Streamlit secrets when deployed
+api_key = st.secrets.get("GOOGLE_API_KEY", None)
+if api_key is None:
+    api_key = os.getenv("GOOGLE_API_KEY")  # Local fallback
 
 # ✅ PDF path
-pdf_path = r"C:\Users\Pranav\OneDrive\Documents\Reminiscences of a Stock Operator 2008 (1).pdf"
+pdf_path = "modules/Reminiscences.pdf"
 doc = fitz.open(pdf_path)
 
 # ✅ Extract text
