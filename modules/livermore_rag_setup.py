@@ -7,7 +7,8 @@ import numpy as np
 import google.generativeai as genai
 
 # ✅ Configure Gemini API Key
-genai.configure(api_key="")
+api_key = os.getenv("GOOGLE_API_KEY")
+genai.configure(api_key=api_key)
 
 # ✅ PDF path
 pdf_path = r"C:\Users\Pranav\OneDrive\Documents\Reminiscences of a Stock Operator 2008 (1).pdf"
