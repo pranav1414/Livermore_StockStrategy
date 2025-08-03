@@ -1,9 +1,0 @@
-streamlit
-matplotlib
-yfinance
-numpy
-pandas
-faiss-cpu
-sentence-transformers
-google-generativeai
-PyMuPDF
