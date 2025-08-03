@@ -1,0 +1,9 @@
+streamlit
+matplotlib
+yfinance
+pandas
+numpy
+faiss-cpu
+sentence-transformers
+google-generativeai
+PyMuPDF
